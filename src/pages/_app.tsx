@@ -4,6 +4,7 @@ import '../styles/index.css'
 import { SessionProvider } from "next-auth/react"
 import Header2 from '../components/Header2'
 import AuthWrapper from './authWrapper'
+import { appWithTranslation } from 'next-i18next';
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
 
@@ -15,11 +16,11 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <SessionProvider session={session}>
-        <Header2 />
+
         <AuthWrapper Component={Component} pageProps={pageProps}/>
       </SessionProvider>
     </>
   )
 }
 
-export default MyApp
+export default appWithTranslation(MyApp);

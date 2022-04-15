@@ -1,6 +1,9 @@
 import styles from '../styles/Home.module.css'
 import { useSession } from 'next-auth/react'
 import { AppProps } from 'next/app'
+import Header2 from '../components/Header2'
+
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 export default function AuthWrapper({ Component, pageProps }) {
   const { data: session, status } = useSession()
@@ -8,6 +11,7 @@ export default function AuthWrapper({ Component, pageProps }) {
 
   return (
     <>
+      <Header2 /> 
       {!session && !loading &&
         <div className="container flex items-center p-4 mx-auto min-h-screen justify-center">
           <main>
@@ -23,3 +27,9 @@ export default function AuthWrapper({ Component, pageProps }) {
     </>
   )
 }
+
+export const getStaticProps = async ({ locale }) => ({
+  props: {
+    ...await serverSideTranslations(locale, ['common']),
+  },
+})

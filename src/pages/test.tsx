@@ -1,8 +1,9 @@
 import styles from '../styles/Home.module.css'
 import { useSession } from 'next-auth/react'
 import { AppProps } from 'next/app'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-export default function Test({ Component, pageProps }) {
+export default function Test() {
   const { data: session, status } = useSession()
   const loading = status === "loading"
 
@@ -30,3 +31,9 @@ export default function Test({ Component, pageProps }) {
     </div>
   )
 }
+
+export const getStaticProps = async ({ locale }) => ({
+  props: {
+    ...await serverSideTranslations(locale, ['common']),
+  },
+})
