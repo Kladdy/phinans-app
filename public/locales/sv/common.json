@@ -1,5 +1,11 @@
 {
-  "phinans": "Phinans (Svenska)",
+  "phinans": "Phinans",
   "open_menu": "Öppna meny",
-  "welcome": "Välkommen"
+  "close_menu": "Stäng meny",
+  "welcome": "Välkommen",
+  "sign_in": "Logga in",
+  "sign_out": "Logga ut",
+  "loading": "Laddar",
+  "please": "Vänligen",
+  "to_access": "för att använda"
 }

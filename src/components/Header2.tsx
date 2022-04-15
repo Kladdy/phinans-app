@@ -52,7 +52,7 @@ export default function Header2() {
           </div>
           
           <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-            {loading && <div className={styles.title}>Loading...</div>}
+            {loading && <div className={styles.title}>{t('loading')}...</div>}
             {
               session &&
                 <>
@@ -62,8 +62,8 @@ export default function Header2() {
                 
                 </>
             }
-            {session && <a href="#" onClick={handleSignout} className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">Sign out</a>  } 
-            {!session && <a href="#" onClick={handleSignin}  className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">Sign in</a>  } 
+            {session && <a href="#" onClick={handleSignout} className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">{t("sign_out")}</a>  } 
+            {!session && <a href="#" onClick={handleSignin}  className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">{t("sign_in")}</a>  } 
           </div>
         </div>
       </div>
@@ -97,21 +97,21 @@ export default function Header2() {
               </div>
             </div>
             <div className="flex items-center justify-center md:flex-1">
-              {loading && <div className={styles.title}>Loading...</div>}
+              {loading && <div className={styles.title}>{t('loading')}...</div>}
               {
                 session &&
                   <>
                   <img src={session.user.image} alt="" className={styles.avatar} />
                   {/* <p style={{ marginBottom: '10px' }}> Welcome, {session.user.name ?? session.user.email}</p> <br /> */}
-                  <p className="pl-3"> Welcome, {session.user.name ?? session.user.email}</p> <br />
+                  <p className="pl-3"> {t('welcome')}, {session.user.name ?? session.user.email}</p> <br />
                   
                   </>
               }
             </div>
             <div className="py-6 px-5 space-y-6">
               <div>
-                {session && <a href="#" onClick={handleSignout} className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">Sign out</a>  } 
-                {!session && <a href="#" onClick={handleSignin}  className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">Sign in</a>  } 
+                {session && <a href="#" onClick={handleSignout} className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">{t('sign_out')}</a>  } 
+                {!session && <a href="#" onClick={handleSignin}  className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">{t('sign_in')}</a>  } 
               </div>
             </div>
           </div>
