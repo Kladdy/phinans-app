@@ -7,5 +7,10 @@
   "sign_out": "Logga ut",
   "loading": "Laddar",
   "please": "Vänligen",
-  "to_access": "för att använda"
+  "to_access": "för att använda",
+  "home": "Hem",
+  "index": {
+    "income": "Inkomster",
+    "expenditure": "Utgifter"
+  }
 }

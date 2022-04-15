@@ -2,7 +2,6 @@ import Head from 'next/head'
 import { AppProps } from 'next/app'
 import '../styles/index.css'
 import { SessionProvider } from "next-auth/react"
-import Header2 from '../components/Header2'
 import AuthWrapper from './authWrapper'
 import { appWithTranslation } from 'next-i18next';
 

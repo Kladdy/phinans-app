@@ -26,24 +26,23 @@ import styles from '../styles/Home.module.css'
 import { useSession } from 'next-auth/react'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next';
-import IndexButton from '../components/index/IndexButton';
-import Breadcrumbs from '../components/common/Breadcrumbs';
+import Breadcrumbs from '../../components/common/Breadcrumbs';
 
-export default function Home() {
+export default function Income() {
   const { t } = useTranslation('common');
 
   const { data: session, status } = useSession()
   const loading = status === "loading"
 
   const pages = [
+    { name: t('index.income'), href: '#', current: true },
   ]
 
   return (
     <>
       <Breadcrumbs pages={pages}/>
       <div className="container flex flex-col items-center p-4 mx-auto justify-center">
-          <IndexButton buttonText={t('index.income')} href={"income"} className={"text-base"} icon={<i className='fas fa-inbox-in mr-2'></i>} />
-          <IndexButton buttonText={t('index.expenditure')} href={"expenditure"} className={"text-error"} icon={<i className='fas fa-inbox-out mr-2'></i>} />
+          Content
       </div>
     </>
   )

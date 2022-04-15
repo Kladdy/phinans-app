@@ -1,7 +1,7 @@
 import styles from '../styles/Home.module.css'
 import { useSession } from 'next-auth/react'
 import { AppProps } from 'next/app'
-import Header2 from '../components/Header2'
+import Header from '../components/common/Header'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 
@@ -13,7 +13,7 @@ export default function AuthWrapper({ Component, pageProps }) {
 
   return (
     <>
-      <Header2 /> 
+      <Header /> 
       {!session && !loading &&
         <div className="container flex items-center p-4 mx-auto min-h-screen justify-center">
           <main>
