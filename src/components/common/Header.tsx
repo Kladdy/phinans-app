@@ -8,14 +8,14 @@ import {
 } from '@heroicons/react/outline'
 import { useSession, signIn, signOut } from 'next-auth/react'
 import Link from 'next/link'
-import styles from '../styles/Home.module.css'
+import styles from '../../styles/Home.module.css'
 import { useTranslation } from 'next-i18next';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Header2() {
+export default function Header() {
   const { t } = useTranslation('common');
 
   const { data: session, status } = useSession()
