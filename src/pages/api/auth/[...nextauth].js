@@ -2,6 +2,7 @@ import NextAuth from 'next-auth'
 import GithubProvider from 'next-auth/providers/github'
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
 import clientPromise from "../../../lib/mongodb"
+import jwt from "jsonwebtoken";
 // import AppleProvider from 'next-auth/providers/apple'
 // import FacebookProvider from 'next-auth/providers/facebook'
 // import GoogleProvider from 'next-auth/providers/google'
@@ -37,6 +38,28 @@ export default NextAuth({
     // }),
   ],
   
+  callbacks: {
+    async jwt({token, account}) {
+      // the user object is what returned from the Credentials login, it has `access_token` from the server `/login` endpoint
+      // assign the accessToken to the `token` object, so it will be available on the `session` callback
+      
+      if (account) {
+        token.access_token = account.access_token
+      }
+      return token
+    },
+
+    async session({ session, token }) {
+      // the token object is what returned from the `jwt` callback, it has the `access_token` that we assigned before
+      // Assign the accessToken to the `session` object, so it will be available on our app through `useSession` hooks
+
+      if (token) {
+        session.access_token = jwt.sign(token, process.env.JWT_SECRET)
+      }
+      return session
+    }
+  },
+
   // The secret should be set to a reasonably long random string.
   // It is used to sign cookies and to sign and encrypt JSON Web Tokens, unless
   // a separate secret is defined explicitly for encrypting the JWT.
@@ -46,10 +69,10 @@ export default NextAuth({
     // Use JSON Web Tokens for session instead of database sessions.
     // This option can be used with or without a database for users/accounts.
     // Note: `jwt` is automatically set to `true` if no database is specified.
-    jwt: true,
+    strategy: "jwt",
 
     // Seconds - How long until an idle session expires and is no longer valid.
-    maxAge: process.env.JWT_EXPIRATION, // 30 days
+    maxAge: 30 * 24 * 60 * 60 // 30 days
   },
 
   // JSON Web tokens are only used for sessions if the `jwt: true` session
@@ -65,4 +88,5 @@ export default NextAuth({
     // encode: async ({ secret, token, maxAge }) => {},
     // decode: async ({ secret, token, maxAge }) => {},
   },
+  
 })
