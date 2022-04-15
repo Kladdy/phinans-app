@@ -5,7 +5,11 @@ export default function Document() {
   return (
     <Html>
       <Head>
+        {/* Inter Font */}
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css"/>
+
+        {/* FontAwesome */}
+        <link href="css/all.css" rel="stylesheet" type="text/css" />
       </Head>
       <body>
         <Main />
