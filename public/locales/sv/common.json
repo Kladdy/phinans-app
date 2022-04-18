@@ -11,6 +11,19 @@
   "home": "Hem",
   "index": {
     "income": "Inkomster",
-    "expenditure": "Utgifter"
+    "expenditure": "Utgifter",
+    "crypto-wallets": "Kryptoplånböcker"
+  },
+  "crypto-wallets": {
+    "add_wallet": "Lägg till plånbok",
+    "cancel": "Avbryt",
+    "add": "Lägg till",
+    "adding": "Lägger till...",
+    "broker": "Mäklare",
+    "nicehash": {
+      "organization_id": "OrganizationId",
+      "api_key": "API key",
+      "api_secret": "API secret"
+    }
   }
 }
