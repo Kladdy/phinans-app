@@ -16,6 +16,8 @@
     "crypto-wallets": "Kryptoplånböcker"
   },
   "crypto-wallets": {
+    "fetch_wallet_data": "Uppdatera plånboksdata",
+    "fetching_wallet_data": "Uppdaterar plånboksdata...",
     "add_wallet": "Lägg till plånbok",
     "cancel": "Avbryt",
     "add": "Lägg till",
