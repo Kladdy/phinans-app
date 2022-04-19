@@ -27,6 +27,7 @@ export default function AddWalletModal({open, setOpen}) {
   const [selectedBroker, setSelectedBroker] = useState(brokers[0])
   const [walletFields, setWalletFields] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submissionErrors, setSubmissionErrors] = useState([])
 
   const renderForm = () => {
     if (selectedBroker.name == "NiceHash") {
@@ -54,7 +55,17 @@ export default function AddWalletModal({open, setOpen}) {
         })
       })
       .then(response => response.json())
-      .then(data => console.log(data))
+      .then(data => {
+        if (data.error != null) {
+          setIsSubmitting(false)
+          setSubmissionErrors(data.errors)
+        } else {
+          setOpen(false)
+          setIsSubmitting(false)
+          setSubmissionErrors([])
+          setWalletFields({})
+        }
+      })
       // .then(() => {
       //   setIsSubmitting(false)
       //   setOpen(false)
@@ -95,7 +106,11 @@ export default function AddWalletModal({open, setOpen}) {
                 <button
                   type="button"
                   className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                  onClick={() => setOpen(false)}
+                  onClick={() => {
+                    setOpen(false)
+                    setSubmissionErrors([])
+                    setWalletFields({})
+                  }}
                 >
                   <span className="sr-only">Close</span>
                   <XIcon className="h-6 w-6" aria-hidden="true" />
@@ -117,14 +132,13 @@ export default function AddWalletModal({open, setOpen}) {
                   <div className="mt-4">
                   { renderForm() }
                   </div>
-
-                  <p className="mt-4 text-sm text-gray-500">
-                    Are you sure you want to deactivate your account? All of your data will be permanently removed
-                    from our servers forever. This action cannot be undone.
-                  </p>
                   
+                  <div className="flex-row">
+                    {submissionErrors.map((e, idx) => <p className='text-red-600 mt-2' key={idx}>{e.message} </p>)}
+                  </div>    
                 </div>
               </div>
+
               <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
                 <button
                   type="button"
@@ -146,10 +160,15 @@ export default function AddWalletModal({open, setOpen}) {
                 <button
                   type="button"
                   className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm"
-                  onClick={() => setOpen(false)}
+                  onClick={() => {
+                    setOpen(false)
+                    setSubmissionErrors([])
+                    setWalletFields({})
+                  }}
                 >
                   {t('crypto-wallets.cancel')}
                 </button>
+
               </div>
             </div>
           </Transition.Child>

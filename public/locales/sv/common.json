@@ -25,7 +25,8 @@
       "label": "Etikett",
       "organization_id": "OrganizationId",
       "api_key": "API key",
-      "api_secret": "API secret"
+      "api_secret": "API secret",
+      "text": "Ovanstående data kommer att verifieras mot NiceHash. Om de är felaktiga får du ett felmeddelande."
     }
   }
 }
