@@ -4,8 +4,18 @@ import { useSession } from 'next-auth/react'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next';
 import Breadcrumbs from '../../components/common/Breadcrumbs';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AddWalletModal from '../../components/crypto-wallets/AddWalletModal';
+import WalletDataInfo from '../../components/crypto-wallets/WalletDataInfo';
+
+// Do not change name of brokers. They are used in backend aswell
+export const brokers = [
+  {
+    id: 1,
+    name: 'NiceHash',
+    avatar: 'img/crypto-wallets/icons/logo_small_dark.png',
+  },
+]
 
 export default function CryptoWallets() {
   // i18n
@@ -18,10 +28,33 @@ export default function CryptoWallets() {
   // States
   const [openAddWallet, setOpenAddWallet] = useState(false)
   const [isFetchingWalletData, setIsFetchingWalletData] = useState(false);
+  const [walletData, setWalletData] = useState<any>({});
 
   const pages = [
     { name: t('index.crypto-wallets'), href: '#', current: true },
   ]
+
+  const getWalletData = () => {
+    
+    fetch(process.env.NEXT_PUBLIC_API_URL + "/api/crypto-wallets/get-wallet-data",
+      {
+        method: "GET",
+        headers: {
+          "x-auth-token": String(session.access_token),
+        },
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.error != null) {
+          
+        } else {
+          setWalletData(data)
+        }
+      })
+      .finally(() => {
+
+      })
+  }
 
   const fetchWalletData = () => {
     setIsFetchingWalletData(true);
@@ -42,11 +75,14 @@ export default function CryptoWallets() {
         }
       })
       .finally(() => {
+        getWalletData()
         setIsFetchingWalletData(false);
       })
-
-
   }
+
+  useEffect(() => {
+    getWalletData()
+  }, [])
 
   return (
     <>
@@ -88,8 +124,12 @@ export default function CryptoWallets() {
           </button>
         </div>
 
-        <div className="container flex flex-col items-center p-4 mx-auto justify-center">
-          Content
+        <div className="container flex flex-col items-center p-4 mx-auto justify-center mt-10">
+          {walletData.nicehash != null ? (
+            walletData.nicehash.map(wallet => <WalletDataInfo key={wallet.walletId} broker={brokers.find(b => b.name == "NiceHash")} wallet={wallet} />)
+          ) : (
+            <></>
+          )}
         </div>
 
       </div>

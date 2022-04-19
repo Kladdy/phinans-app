@@ -6,15 +6,7 @@ import { useTranslation } from 'next-i18next';
 import AddWalletDropdown from './AddWalletDropdown';
 import AddWalletFormNiceHash from './AddWalletFormNiceHash';
 import { useSession } from 'next-auth/react';
-
-// Do not change name of brokers. They are used in backend aswell
-const brokers = [
-  {
-    id: 1,
-    name: 'NiceHash',
-    avatar: 'img/crypto-wallets/icons/logo_small_dark.png',
-  },
-]
+import { brokers } from '../../pages/crypto-wallets';
 
 export default function AddWalletModal({open, setOpen}) {
   // i18n

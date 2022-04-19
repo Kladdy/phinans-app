@@ -23,7 +23,13 @@
     "add": "Lägg till",
     "adding": "Lägger till...",
     "broker": "Mäklare",
+    "wallet": "Plånbok",
     "voluntary": "Frivilligt",
+    "too_few_datapoints": "För få datapunkter finns lagrade. Vänligen uppdatera plånboksdatan, eller återkom senare.",
+    "min": "Min",
+    "max": "Max",
+    "start": "Start",
+    "current": "Nuvarande",
     "nicehash": {
       "label": "Etikett",
       "organization_id": "OrganizationId",
