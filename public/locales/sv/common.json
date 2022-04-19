@@ -20,7 +20,9 @@
     "add": "Lägg till",
     "adding": "Lägger till...",
     "broker": "Mäklare",
+    "voluntary": "Frivilligt",
     "nicehash": {
+      "label": "Etikett",
       "organization_id": "OrganizationId",
       "api_key": "API key",
       "api_secret": "API secret"
