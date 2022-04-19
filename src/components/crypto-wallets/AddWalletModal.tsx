@@ -56,6 +56,8 @@ export default function AddWalletModal({open, setOpen}) {
       })
       .then(response => response.json())
       .then(data => {
+        // console.log(data)
+        // console.log(submissionErrors)
         if (data.error != null) {
           setIsSubmitting(false)
           setSubmissionErrors(data.errors)
