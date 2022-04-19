@@ -68,15 +68,18 @@ export default function AddWalletModal({open, setOpen}) {
           setWalletFields({})
         }
       })
-      // .then(() => {
-      //   setIsSubmitting(false)
-      //   setOpen(false)
-      // });
   }
 
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="fixed z-10 inset-0 overflow-y-auto" onClose={setOpen}>
+      <Dialog 
+        as="div" 
+        className="fixed z-10 inset-0 overflow-y-auto" 
+        onClose={() => {
+          setSubmissionErrors([])
+          setWalletFields({})
+          setOpen(false)}
+        }>
         <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
           <Transition.Child
             as={Fragment}
@@ -109,12 +112,12 @@ export default function AddWalletModal({open, setOpen}) {
                   type="button"
                   className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   onClick={() => {
-                    setOpen(false)
                     setSubmissionErrors([])
                     setWalletFields({})
+                    setOpen(false)
                   }}
                 >
-                  <span className="sr-only">Close</span>
+                  <span className="sr-only">{t('close')}</span>
                   <XIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
               </div>
@@ -163,9 +166,9 @@ export default function AddWalletModal({open, setOpen}) {
                   type="button"
                   className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm"
                   onClick={() => {
-                    setOpen(false)
                     setSubmissionErrors([])
                     setWalletFields({})
+                    setOpen(false)
                   }}
                 >
                   {t('crypto-wallets.cancel')}
