@@ -38,7 +38,8 @@
     "add_text": "Senast uppdaterat sätts automatiskt till den tidpunkt du lägger till innehavet.",
     "title": "Innehav",
     "text": "Du har följande innehav, uppdelade på kategori.",
-    "edit": "Ändra"
+    "edit": "Ändra",
+    "total": "Totalt"
   },
   "crypto-wallets": {
     "fetch_wallet_data": "Uppdatera plånboksdata",

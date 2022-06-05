@@ -14,6 +14,7 @@ export default function WalletDataInfo({holdingsData, categories}) {
 
   // States
   const [tableData, setTableData] = useState([])
+  const [totalSum, setTotalSum] = useState(0)
 
   // Create the tabel data from the holdingsData
   useEffect(() => {
@@ -29,6 +30,11 @@ export default function WalletDataInfo({holdingsData, categories}) {
     tempTableData = allCategories.map(category => {return {category: category, holdings: holdingsData.filter(holding => holding.category === category.name)}})
 
     setTableData(tempTableData)
+
+    // Update the total sum
+    const amounts = holdingsData.map(holding => holding.amount)
+    const sum = amounts.reduce((a, b) => a + b, 0)
+    setTotalSum(sum)
 
   }, [holdingsData])
 
@@ -98,6 +104,23 @@ export default function WalletDataInfo({holdingsData, categories}) {
                     </Fragment>
                   ))}
                 </tbody>
+                <tfoot>
+                  <tr >
+                    <th
+                      scope="row"
+                      colSpan={1}
+                      className="hidden pl-6 pr-3 pt-4 pb-6 text-right text-sm font-semibold text-gray-900 sm:table-cell md:pl-0"
+                    >
+                      {t('holdings.total')}
+                    </th>
+                    <th scope="row" className="pl-4 pr-3 pt-4 pb-6 text-left text-sm font-semibold text-gray-900 sm:hidden">
+                      {t('holdings.total')}
+                    </th>
+                    <td className="pl-3 pr-4 pt-4 pb-6 text-left text-sm font-semibold text-gray-900 sm:pr-6 md:pr-0">
+                      {totalSum}
+                    </td>
+                  </tr>
+                </tfoot>
               </table>
             </div>
           </div>
