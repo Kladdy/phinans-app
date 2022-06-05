@@ -25,8 +25,8 @@ export default function AddHoldingForm({holdingFields, setHoldingFields}) {
 
   // States
   const [label, setLabel] = useState("")
-  const [amount, setAmount] = useState<number>()
-  const [lastUpdated, setLastUpdated] = useState("")
+  const [amount, setAmount] = useState<number>(0)
+  const [lastUpdated, setLastUpdated] = useState(new Date())
 
   useEffect(() => {
     setHoldingFields({
@@ -80,9 +80,10 @@ export default function AddHoldingForm({holdingFields, setHoldingFields}) {
             name="last_updated"
             id="last_updated"
             className="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
-            placeholder={t('holdings.voluntary')}
-            value={lastUpdated}
-            onChange={e => setLastUpdated(e.target.value)}
+            placeholder=""
+            value={lastUpdated.toLocaleString()}
+            disabled={true}
+            // onChange={e => setLastUpdated(e.target.value)}
           />
         </div>
         

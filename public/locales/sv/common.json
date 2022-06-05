@@ -35,7 +35,7 @@
     },
     "fetch_holdings_data": "Uppdatera innehavsdata",
     "fetching_holdings_data": "Uppdaterar innehavsdata...",
-    "text": "Om du inte sätter ett datum för senast uppdaterat, kommer det att sättas till dagens datum."
+    "text": "Senast uppdaterat sätts automatiskt till den tidpunkt du lägger till innehavet."
   },
   "crypto-wallets": {
     "fetch_wallet_data": "Uppdatera plånboksdata",

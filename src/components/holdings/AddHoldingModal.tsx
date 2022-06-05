@@ -32,32 +32,31 @@ export default function AddWalletModal({open, setOpen}) {
   const addHolding = () => {
     setIsSubmitting(true)
 
-    // fetch(process.env.NEXT_PUBLIC_API_URL + "/api/crypto-wallets/add",
-    //   {
-    //     method: "POST",
-    //     headers: {
-    //       "x-auth-token": String(session.access_token),
-    //       'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify({
-    //       brokerName: selectedBroker.name,
-    //       walletFields: walletFields
-    //     })
-    //   })
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     // console.log(data)
-    //     // console.log(submissionErrors)
-    //     if (data.error != null) {
-    //       setIsSubmitting(false)
-    //       setSubmissionErrors(data.errors)
-    //     } else {
-    //       setOpen(false)
-    //       setIsSubmitting(false)
-    //       setSubmissionErrors([])
-    //       setHoldingFields({})
-    //     }
-    //   })
+    fetch(process.env.NEXT_PUBLIC_API_URL + "/api/holdings/add",
+      {
+        method: "POST",
+        headers: {
+          "x-auth-token": String(session.access_token),
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          holdingFields: {...holdingFields, selectedCategory: selectedCategory.name}
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        // console.log(data)
+        // console.log(submissionErrors)
+        if (data.error != null) {
+          setIsSubmitting(false)
+          setSubmissionErrors(data.errors)
+        } else {
+          setOpen(false)
+          setIsSubmitting(false)
+          setSubmissionErrors([])
+          setHoldingFields({})
+        }
+      })
   }
 
   return (
