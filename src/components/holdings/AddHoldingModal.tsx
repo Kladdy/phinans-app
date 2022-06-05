@@ -40,7 +40,8 @@ export default function AddWalletModal({open, setOpen}) {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          holdingFields: {...holdingFields, selectedCategory: selectedCategory.name}
+          selectedCategory: selectedCategory.name,
+          holdingFields: holdingFields
         })
       })
       .then(response => response.json())

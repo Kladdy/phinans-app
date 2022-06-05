@@ -48,56 +48,33 @@ export default function Holdings() {
   // States
   const [openAddHolding, setOpenAddHolding] = useState(false)
   const [isFetchingHoldingsData, setIsFetchingHoldingsData] = useState(false);
-//   const [walletData, setWalletData] = useState<any>({});
+  const [holdingData, setHoldingData] = useState<any>([]);
 
   const pages = [
     { name: t('index.holdings'), href: '#', current: true },
   ]
 
   const getHoldingsData = () => {
-    
-    // fetch(process.env.NEXT_PUBLIC_API_URL + "/api/crypto-wallets/get-wallet-data",
-    //   {
-    //     method: "GET",
-    //     headers: {
-    //       "x-auth-token": String(session.access_token),
-    //     },
-    //   })
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     if (data.error != null) {
-          
-    //     } else {
-    //       setWalletData(data)
-    //     }
-    //   })
-    //   .finally(() => {
-
-    //   })
-  }
-
-  const fetchHoldingsData = () => {
     setIsFetchingHoldingsData(true);
 
-    // fetch(process.env.NEXT_PUBLIC_API_URL + "/api/crypto-wallets/fetch",
-    //   {
-    //     method: "GET",
-    //     headers: {
-    //       "x-auth-token": String(session.access_token),
-    //     },
-    //   })
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     if (data.error != null) {
-
-    //     } else {
-
-    //     }
-    //   })
-    //   .finally(() => {
-    //     getWalletData()
-    //     setIsFetchingWalletData(false);
-    //   })
+    fetch(process.env.NEXT_PUBLIC_API_URL + "/api/holdings/get-holdings-data",
+      {
+        method: "GET",
+        headers: {
+          "x-auth-token": String(session.access_token),
+        },
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.error != null) {
+          
+        } else {
+          setHoldingData(data)
+        }
+      })
+      .finally(() => {
+        setIsFetchingHoldingsData(false);
+      })
   }
 
   useEffect(() => {
@@ -115,7 +92,7 @@ export default function Holdings() {
           <button
             type="button"
             className="mx-3 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            onClick={() => fetchHoldingsData()}
+            onClick={() => getHoldingsData()}
             disabled={isFetchingHoldingsData}
           >
             {isFetchingHoldingsData ? 
