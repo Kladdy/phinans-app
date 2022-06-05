@@ -8,7 +8,7 @@ import AddHoldingForm from './AddHoldingForm';
 import { useSession } from 'next-auth/react';
 import { categories } from '../../pages/holdings';
 
-export default function AddWalletModal({open, setOpen}) {
+export default function AddWalletModal({open, setOpen, getHoldingsData}) {
   // i18n
   const { t } = useTranslation('common');
 
@@ -56,8 +56,10 @@ export default function AddWalletModal({open, setOpen}) {
           setIsSubmitting(false)
           setSubmissionErrors([])
           setHoldingFields({})
+          getHoldingsData() // Update the holdings data if we added a new holding
         }
       })
+
   }
 
   return (

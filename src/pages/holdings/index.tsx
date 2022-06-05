@@ -6,7 +6,7 @@ import { useTranslation } from 'next-i18next';
 import Breadcrumbs from '../../components/common/Breadcrumbs';
 import { useEffect, useState } from 'react';
 import AddHoldingModal from '../../components/holdings/AddHoldingModal';
-// import WalletDataInfo from '../../components/crypto-wallets/WalletDataInfo';
+import HoldingsDataTable from '../../components/holdings/HoldingsDataTable';
 
 // Do not change name of category. They are used in backend aswell
 export const categories = [
@@ -48,7 +48,7 @@ export default function Holdings() {
   // States
   const [openAddHolding, setOpenAddHolding] = useState(false)
   const [isFetchingHoldingsData, setIsFetchingHoldingsData] = useState(false);
-  const [holdingData, setHoldingData] = useState<any>([]);
+  const [holdingsData, setHoldingsData] = useState<any>([]);
 
   const pages = [
     { name: t('index.holdings'), href: '#', current: true },
@@ -69,7 +69,7 @@ export default function Holdings() {
         if (data.error != null) {
           
         } else {
-          setHoldingData(data)
+          setHoldingsData(data)
         }
       })
       .finally(() => {
@@ -83,7 +83,7 @@ export default function Holdings() {
 
   return (
     <>
-      <AddHoldingModal open={openAddHolding} setOpen={setOpenAddHolding}/>
+      <AddHoldingModal open={openAddHolding} setOpen={setOpenAddHolding} getHoldingsData={getHoldingsData}/>
 
       <Breadcrumbs pages={pages}/>
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -122,11 +122,11 @@ export default function Holdings() {
         </div>
 
         <div className="container flex flex-col items-center p-4 mx-auto justify-center mt-10">
-          {/* {walletData.nicehash != null ? (
-            walletData.nicehash.map(wallet => <WalletDataInfo key={wallet.walletId} broker={brokers.find(b => b.name == "NiceHash")} wallet={wallet} />)
+          {holdingsData != null ? (
+            <HoldingsDataTable holdingsData={holdingsData} categories={categories}/>
           ) : (
             <></>
-          )} */}
+          )}
         </div>
 
       </div>

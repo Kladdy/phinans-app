@@ -90,7 +90,7 @@ export default function AddHoldingForm({holdingFields, setHoldingFields}) {
   
       </div>
 
-      <p className="mt-4 text-sm text-gray-500"> {t('holdings.text')} </p>
+      <p className="mt-4 text-sm text-gray-500"> {t('holdings.add_text')} </p>
     </>
   )
   }
