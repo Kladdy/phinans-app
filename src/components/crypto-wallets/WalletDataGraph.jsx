@@ -1,13 +1,14 @@
 // Adapted from https://github.com/bxb100/react-tailwind-chart
 // which is adapted from https://codepen.io/ScottWindon/pen/RwrXLJR
 
+import 'chartjs-adapter-moment';
 import { Line } from 'react-chartjs-2';
-import { Chart as ChartJS, LineElement, PointElement, LinearScale, Title, CategoryScale } from 'chart.js';
+import { Chart as ChartJS, LineElement, PointElement, LinearScale, Title, CategoryScale, TimeScale } from 'chart.js';
 import { useTranslation } from 'next-i18next';
 
 import React, { useEffect, useState } from 'react';
 
-ChartJS.register(LineElement, PointElement, LinearScale, Title, CategoryScale);
+ChartJS.register(LineElement, PointElement, LinearScale, Title, CategoryScale, TimeScale);
 const formatter = (number) => (number > 999999 ? (number / 1000000).toFixed(1) + 'M' : number);
 
 const options = {
@@ -28,8 +29,16 @@ const options = {
         },
 
         xAxes: {
+            type: 'time',
+            time: {
+              unit: 'day',
+              unitStepSize: 1,
+              displayFormats: {
+                 'day': 'MMM DD, YYYY'
+              }
+            },
             ticks: {
-                color: 'rgba(255, 255, 255, 1)'
+              color: 'rgba(255, 255, 255, 1)'
             },
             grid: {
                 circular: true,
@@ -37,7 +46,8 @@ const options = {
                 color: 'rgba(255, 255, 255, .2)',
                 borderDash: [5, 5]
             },
-        },
+        }
+        
     },
     layout: {
         padding: {
@@ -65,7 +75,7 @@ export default function WalletDataGraph({ broker, wallet }) {
   })
 
   useEffect(() => {
-    setGraphData({x_data: wallet.data.map((d) => d.time), y_data: wallet.data.map((d) => d.totalBalance)})
+    setGraphData({x_data: wallet.data.map((d) => new Date(d.time)), y_data: wallet.data.map((d) => d.totalBalance)})
   }, [wallet])
 
   useEffect(() => {
@@ -144,11 +154,11 @@ export default function WalletDataGraph({ broker, wallet }) {
                 <span className="block leading-none text-3xl text-gray-800">{numberToFix(stats.current, 5)}</span>
                 {stats.changePercentage <= 0 ? (
                   <span className="block leading-5 text-sm ml-4 text-red-500">
-                    {`${stats.change < 0 ? '▼' : '▲'} (${stats.changePercentage?.toFixed(3)}%)`}
+                    {`${stats.change < 0 ? '▼' : '▲'} (${stats.changePercentage?.toFixed(3)} %)`}
                   </span>
                 ) : (
                   <span className="block leading-5 text-sm ml-4 text-green-500">
-                    {`${stats.change < 0 ? '▼' : '▲'} (${stats.changePercentage?.toFixed(3)}%)`}
+                    {`${stats.change < 0 ? '▼' : '▲'} (${stats.changePercentage?.toFixed(3)} %)`}
                   </span>
                 )}
                 
