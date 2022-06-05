@@ -45,6 +45,7 @@ export default function Home() {
           <IndexButton buttonText={t('index.income')} href={"income"} className={"text-base"} icon={<i className='fas fa-inbox-in mr-2'></i>} />
           <IndexButton buttonText={t('index.expenditure')} href={"expenditure"} className={"text-error"} icon={<i className='fas fa-inbox-out mr-2'></i>} />
           <IndexButton buttonText={t('index.crypto-wallets')} href={"crypto-wallets"} className={"text-error"} icon={<i className='fas fa-coins mr-2'></i>} />
+          <IndexButton buttonText={t('index.holdings')} href={"holdings"} className={"text-error"} icon={<i className='fas fa-hand-holding-usd mr-2'></i>} />
       </div>
     </>
   )

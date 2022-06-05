@@ -13,7 +13,29 @@
   "index": {
     "income": "Inkomster",
     "expenditure": "Utgifter",
-    "crypto-wallets": "Kryptoplånböcker"
+    "crypto-wallets": "Kryptoplånböcker",
+    "holdings": "Innehav"
+  },
+  "holdings": {
+    "add": "Lägg till",
+    "add_holding": "Lägg till innehav",
+    "adding": "Lägger till...",
+    "voluntary": "Frivilligt",
+    "cancel": "Avbryt",
+    "amount": "Belopp",
+    "label": "Etikett",
+    "last_updated": "Senast uppdaterat",
+    "category": "Kategori",
+    "categories": {
+      "bank": "Bankkonton",
+      "cash": "Kontanter",
+      "stocks": "Aktier",
+      "cryptocurrencies": "Kryptovalutor",
+      "other": "Övrigt"
+    },
+    "fetch_holdings_data": "Uppdatera innehavsdata",
+    "fetching_holdings_data": "Uppdaterar innehavsdata...",
+    "text": "Om du inte sätter ett datum för senast uppdaterat, kommer det att sättas till dagens datum."
   },
   "crypto-wallets": {
     "fetch_wallet_data": "Uppdatera plånboksdata",
